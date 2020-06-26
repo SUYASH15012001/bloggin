@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 function Footer(props) {
     return(
-        <div className="footer">
-            <div className="container">
+        <div className="footer mt-5">
+            <div className="container ">
                 <div className="row justify-content-center">             
-                    <div className="col-4 offset-1 col-sm-2">
+                    <div className="col-4 offset-1 col-sm-2 mt-5">
                         <h5>Links</h5>
                         <ul className="list-unstyled">
                             <li><Link to="/home">Home</Link></li>
@@ -15,7 +15,7 @@ function Footer(props) {
                             <li><Link to="/contactus">Contact Us</Link></li>
                         </ul>
                     </div>
-                    <div className="col-7 col-sm-5">
+                    <div className="col-7 col-sm-5 mt-5">
                         <h5>Our Address</h5>
                         <address>
                         121, Clear Water Bay Road<br />
@@ -27,7 +27,7 @@ function Footer(props) {
                             confusion@food.net</a>
                         </address>
                     </div>
-                    <div className="col-12 col-sm-4 align-self-center">
+                    <div className="col-12 col-sm-4 align-self-center mt-5">
                         <div className="text-center">
                             <a className="btn btn-social-icon btn-google" href="http://google.com/+"><i className="fa fa-google-plus"></i></a>
                             <a className="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i className="fa fa-facebook"></i></a>
