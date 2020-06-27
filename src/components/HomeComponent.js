@@ -1,38 +1,46 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
+import {connect} from 'react-redux';
 
 
-function RenderCard() {
+function RenderCard({blogs}) {
     return(
-        <Card>
-            <CardImg src='public/logo192.png' alt='Card image' />
-            <CardBody>
-                <CardTitle>Title</CardTitle>
-                <CardSubtitle>CardSubtitle</CardSubtitle>
-                <CardText>Description</CardText>
-            </CardBody>
-        </Card>
-    );
+        <div className="row align-items-start">
+            {blogs && blogs.map(blog => 
+            {
+                return (
+                    <div className="col-12 col-md m-1" key={blog.id}>
+                        <Card>
+                            <CardImg src= {blog.img}  alt='Card image' />
+                            <CardBody>
+                                <CardTitle> {blog.title} </CardTitle>
+                                <CardSubtitle> {blog.subtitle} </CardSubtitle>
+                                <CardText> {blog.description} </CardText>
+                            </CardBody>
+                        </Card>
+                    </div>
+                )
+            })}
+        </div>
+        
+        );
 }
 
 class HomeComponent extends Component {
     render() {
+        console.log(this.props);
         return (
             <div className="container">
-                <div className="row align-items-start">
-                    <div className="col-12 col-md m-1">
-                        <RenderCard/>
-                    </div>
-                    <div className="col-12 col-md m-1">
-                        <RenderCard/>
-                    </div>
-                    <div className="col-12 col-md m-1">
-                        <RenderCard/>
-                    </div>
-                </div>
+                <RenderCard blogs={this.props.blogs} />
             </div>
         )
     }
 }
 
-export default HomeComponent;
+const mapStateToProps = (state) => {
+    return {
+        blogs: state.blog.blogs
+    }
+}
+
+export default connect(mapStateToProps)(HomeComponent);

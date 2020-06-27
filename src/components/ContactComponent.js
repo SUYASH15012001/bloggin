@@ -1,6 +1,7 @@
 import React , { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-
+import {connect} from 'react-redux';
+import { createFeedback } from '../redux/actions/contactActions';
 class Contact extends Component {
   state=
   {
@@ -18,8 +19,8 @@ handleChange = (e) => {
 
 handleSubmit = (e) => {
     e.preventDefault();
-    alert(JSON.stringify(this.state));
-    console.log(e);
+    this.props.createFeedback(this.state);
+    this.props.history.push('/');
 }
 
   render() {
@@ -47,4 +48,10 @@ handleSubmit = (e) => {
 
 }
 
-export default Contact;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createFeedback: (feedback) => dispatch(createFeedback(feedback))
+  }
+}
+
+export default connect(null,mapDispatchToProps)(Contact);

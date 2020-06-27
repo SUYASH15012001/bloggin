@@ -5,6 +5,7 @@ import Header from './components/HeaderComponent';
 import HomeComponent from './components/HomeComponent';
 import Footer from './components/FooterComponent';
 import Contact from './components/ContactComponent';
+import CreateBlog from'./components/BlogComponent';
 
 function App() {
   return (
@@ -13,9 +14,10 @@ function App() {
         <div className="App">
           <Header/>
               <Switch>
+                <Route exact path='/' component = {HomeComponent}/>
                 <Route exact path='/home' component = {HomeComponent}/>
-                {/* <Route exact path='/home' component = {HomeComponent}/> */}
                 <Route exact path='/contact' component = {Contact}/>
+                <Route exact path='/createBlog' component = {CreateBlog}/>
               </Switch>
           <Footer/>
         </div>
