@@ -7,7 +7,8 @@ class CreateBlog extends Component {
     state={
         title:'',
         subtitle:'',
-        description: ''
+        content: '',
+        authorName: ''
     };
 
     //e is the event i.e. is passed to the event handler fucntion.
@@ -16,6 +17,7 @@ class CreateBlog extends Component {
             [e.target.id]:e.target.value
         })
     }
+
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -38,6 +40,10 @@ class CreateBlog extends Component {
                 <FormGroup className='row row-content'> 
                   <Label for="content" className='col-12 col-md-2'>Description</Label>
                   <Input type="textarea" name="content" id="content" onChange={this.handleChange}  className='col-12 col-md-9 offset-sm-1'/>
+                </FormGroup>
+                <FormGroup className='row row-content'>
+                  <Label for="authorName" className='col-12 col-md-2'>Author Name</Label>
+                  <Input type="text" name="authorName" id="authorName" onChange={this.handleChange}   placeholder="Enter your name" className='col-12 col-md-9 offset-sm-1'/>
                 </FormGroup>
                 <Button className='btn btn-secondary' type='submit'>Submit</Button>
               </div>
