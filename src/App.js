@@ -8,18 +8,18 @@ import Contact from './components/ContactComponent';
 
 function App() {
   return (
-    <div>
-      <Header/>
-      <BrowserRouter>
+      
+      <BrowserRouter>  
         <div className="App">
-          <Switch>
-            <Route exact path='/' component = {HomeComponent}/>
-            <Route path='/contact' component = {Contact}/>
-          </Switch>
-        </div>  
+          <Header/>
+              <Switch>
+                <Route exact path='/home' component = {HomeComponent}/>
+                {/* <Route exact path='/home' component = {HomeComponent}/> */}
+                <Route exact path='/contact' component = {Contact}/>
+              </Switch>
+          <Footer/>
+        </div>
       </BrowserRouter>
-      <Footer/>
-    </div>
     
   );
 }

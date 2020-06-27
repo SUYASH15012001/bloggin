@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 
 
-
-function RenderCard({item, isLoading, errMess}) {
+function RenderCard() {
     return(
         <Card>
             <CardImg src='public/logo192.png' alt='Card image' />
@@ -36,4 +35,4 @@ class HomeComponent extends Component {
     }
 }
 
-export default HomeComponent
+export default HomeComponent;
