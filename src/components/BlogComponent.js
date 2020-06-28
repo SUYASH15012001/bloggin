@@ -11,7 +11,8 @@ class CreateBlog extends Component {
         content: '',
         authorName: '',
         img: [],
-        files: []
+        files: [],
+        user:''
     };
 
     //e is the event i.e. is passed to the event handler fucntion.
@@ -50,7 +51,8 @@ class CreateBlog extends Component {
         })
       })
       this.setState({
-        files: []
+        files: [],
+        user: firebase.auth().currentUser.email
       })
       console.log('it should have images',this.state)
     }

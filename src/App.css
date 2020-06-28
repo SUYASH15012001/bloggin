@@ -45,3 +45,13 @@
 .footer{
   background-color: #e9ecef;
 }
+
+a:hover {
+  text-decoration: none;
+}
+
+#profilePic{
+  height: 30px;
+  width: auto;
+  border-radius: 5%;
+}

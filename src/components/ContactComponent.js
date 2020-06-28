@@ -2,6 +2,7 @@ import React , { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import {connect} from 'react-redux';
 import { createFeedback } from '../redux/actions/contactActions';
+
 class Contact extends Component {
   state=
   {

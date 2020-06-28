@@ -3,7 +3,6 @@ export const createBlog = (blog) => {
         const firestore = getFirestore;
         firestore().collection('blogs').add({
             ...blog,
-            user: null,
             createdAt: new Date(),
         })
         .then(() => {

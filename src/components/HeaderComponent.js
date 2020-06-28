@@ -1,15 +1,30 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron} from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron, Button}  from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import firebase from '../config/fbConfig';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+
 
 class Header extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            isNavOpen: false
+            isNavOpen: false,
+            isSignedIn: false
         };
         this.toggleNav = this.toggleNav.bind(this);
+        
+    }
+
+    uiConfig = {
+        signInFlow: 'popup',
+        signInOptions: [
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID
+        ],
+        callbacks: {
+            signInSuccess: () => false
+        }
     }
 
     toggleNav() {
@@ -18,8 +33,14 @@ class Header extends Component {
         });
     }
 
+    componentDidMount =() => {
+        firebase.auth().onAuthStateChanged(user => {
+            this.setState({isSignedIn: !!user})
+        })
+    }
 
     render() {
+        
         return(
             <React.Fragment>
                 <Navbar dark expand="md" className="bg-dark">
@@ -38,7 +59,7 @@ class Header extends Component {
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link ml-5" to="/createBlog">
+                                    <NavLink className="nav-link ml-5" to="/myBlog">
                                         <span className="fa fa-info fa-lg"></span> Blog
                                     </NavLink>
                                 </NavItem>
@@ -47,10 +68,22 @@ class Header extends Component {
                                         <span className="fa fa-address-card fa-lg"></span> Contact Us
                                     </NavLink>
                                 </NavItem>
-                            </Nav>
-                            <NavItem>
-                                <span className="fa fa-google text-secondary fa-lg"> Login</span>     
-                            </NavItem>
+                            </Nav> 
+                            {
+                                this.state.isSignedIn ? 
+                                (
+                                    <span>
+                                        <NavbarBrand>
+                                            <img id='profilePic' src={firebase.auth().currentUser.photoURL} alt='Image uploaded'/>
+                                        </NavbarBrand>
+                                        <text className='text-secondary'>Welcome <strong>{firebase.auth().currentUser.displayName}</strong> </text>&nbsp;&nbsp;&nbsp;
+                                        <Button onClick={() => firebase.auth().signOut()}>SignOut</Button>
+                                    </span>
+                                    ):
+                                (
+                                    <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
+                                )
+                            }
                         </Collapse>
                     </div>
                 </Navbar>
