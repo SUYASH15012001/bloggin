@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
-import createBlog from './BlogComponent'
+import createBlog from './BlogComponent';
+import editComponent from './editComponent'
 
 const myBlogComponent = () => {
     return (
@@ -14,7 +15,7 @@ const myBlogComponent = () => {
                 </div>
                 <div className="col-12 col-sm-5 offset-sm-1">
                     <Button color="info" className='btn btn-lg'>
-                        <Link to='/edit' className="text-white">Edit your blogs</Link>    
+                        <Link to='/edit' component={editComponent} className="text-white">Edit your blogs</Link>    
                     </Button>                        
                 </div>
             </div>

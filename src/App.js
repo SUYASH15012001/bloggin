@@ -7,6 +7,7 @@ import Footer from './components/FooterComponent';
 import Contact from './components/ContactComponent';
 import myBlogComponent from'./components/myBlogComponent';
 import CreateBlog from './components/BlogComponent';
+import editComponent from './components/editComponent'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                 <Route exact path='/contact' component = {Contact}/>
                 <Route exact path='/myBlog' component = {myBlogComponent}/>
                 <Route exact path = '/createBlog' component = { CreateBlog}/>
+                <Route exact path = '/edit' component = { editComponent} />
               </Switch>
           <Footer/>
         </div>

@@ -14,7 +14,7 @@ class Header extends Component {
             isSignedIn: false
         };
         this.toggleNav = this.toggleNav.bind(this);
-        
+
     }
 
     uiConfig = {
@@ -74,7 +74,7 @@ class Header extends Component {
                                 (
                                     <span>
                                         <NavbarBrand>
-                                            <img id='profilePic' src={firebase.auth().currentUser.photoURL} alt='Image uploaded'/>
+                                            <img id='profilePic' src={firebase.auth().currentUser.photoURL} alt='uploaded'/>
                                         </NavbarBrand>
                                         <text className='text-secondary'>Welcome <strong>{firebase.auth().currentUser.displayName}</strong> </text>&nbsp;&nbsp;&nbsp;
                                         <Button onClick={() => firebase.auth().signOut()}>SignOut</Button>

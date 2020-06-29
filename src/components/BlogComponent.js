@@ -61,9 +61,9 @@ class CreateBlog extends Component {
         e.preventDefault();
         console.log("Form submit",this.state);
         this.handleSaveImage();
-        setTimeout(() => this.imgPush(),1000);
-        setTimeout(() => this.props.createBlog(this.state),2000);
-        setTimeout(() => this.props.history.push('/') , 4000) ;
+        setTimeout(() => this.imgPush(),6000);
+        setTimeout(() => this.props.createBlog(this.state),10000);
+        setTimeout(() => this.props.history.push('/') , 11000) ;
       }
     render() {
         return (
