@@ -1,10 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import createBlog from './BlogComponent';
-import editComponent from './editComponent'
+import editComponent from './editComponent';
+import firebase from '../config/fbConfig';
+
 
 const myBlogComponent = () => {
+    if(!firebase.auth().currentUser) 
+    {   alert('We would love to link with you on GMail :)');
+        return <Redirect to='/home'/>    
+    }
     return (
         <div className="container">
             <div className="row row-content align-items-start">

@@ -67,6 +67,9 @@ class CreateBlog extends Component {
       }
     render() {
         return (
+          <div className="container">
+            <h3>Create Your Blog&nbsp;&nbsp;<i class="fa fa-comments" aria-hidden="true"></i></h3>
+            <hr/><br/>
             <Form onSubmit={this.handleSubmit}>
               <div className="container">
                 <FormGroup className='row row-content'>
@@ -92,6 +95,8 @@ class CreateBlog extends Component {
                 <Button className='btn btn-secondary' type='submit'>Submit</Button>
               </div>
             </Form>
+          </div>
+          
     )
     }
 }
