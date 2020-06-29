@@ -82,11 +82,11 @@ class editComponent extends Component {
     render() {
         return (
             <div className="container">
-                <h3> Your Blogs <i class="fa fa-cogs" aria-hidden="true"></i></h3>
+                <h3> Your Blogs <i className="fa fa-cogs" aria-hidden="true"></i></h3>
                 <hr/><br/>
                 <RenderCard blogs={this.props.blogs} handleDelete={this.handleDelete} toggleModal={this.toggleModal}/>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+                    <ModalHeader toggle={this.toggleModal}>Edit the details</ModalHeader>
                     <ModalBody>
                     <Form onSubmit={this.handleSubmit}>
                         <div className="container">

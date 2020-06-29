@@ -55,3 +55,19 @@ a:hover {
   width: auto;
   border-radius: 5%;
 }
+
+.navlink-style{
+  text-align: justify;
+}
+
+@media only screen and (max-width: 768px) {
+  #loginlink {
+    margin-right:14%;
+  }
+}
+
+@media only screen and (max-width: 577px) {
+  #loginlink {
+    margin-right:10%;
+  }
+}

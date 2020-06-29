@@ -28,7 +28,7 @@ class CreateBlog extends Component {
       })
     }
 
-    handleSaveImage = () => {
+    handleSaveImage = async () => {
       let bucketName = 'images';
       this.state.files && this.state.files.map( (file) => {
         let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`);
@@ -40,7 +40,7 @@ class CreateBlog extends Component {
       });
     }
 
-    imgPush = () => {
+    imgPush = async () => {
       this.state.files && this.state.files.map((file) => {
         let storageRef = firebase.storage().ref();
         let spaceRef = storageRef.child('images/'+file.name)
@@ -60,10 +60,11 @@ class CreateBlog extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         console.log("Form submit",this.state);
-        this.handleSaveImage();
-        setTimeout(() => this.imgPush(),6000);
-        setTimeout(() => this.props.createBlog(this.state),10000);
-        setTimeout(() => this.props.history.push('/') , 11000) ;
+        this.handleSaveImage().then(()=>setTimeout(() => this.imgPush()
+        .then(() => 
+          setTimeout(() => this.props.createBlog(this.state),10000))
+          ,10000))
+        setTimeout(() => this.props.history.push('/') , 24000) ;
       }
     render() {
         return (
