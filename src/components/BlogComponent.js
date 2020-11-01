@@ -10,8 +10,8 @@ class CreateBlog extends Component {
         subtitle:'',
         content: '',
         authorName: '',
-        img: [],
-        files: [],
+        img: '',
+        files:null,
         user:''
     };
 
@@ -24,47 +24,53 @@ class CreateBlog extends Component {
 
     handleChangeImage = (file) => { 
       this.setState({
-        files: [...this.state.files , ...file]
+        files: file
       })
     }
 
     handleSaveImage = async () => {
       let bucketName = 'images';
-      this.state.files && this.state.files.map( (file) => {
+      let file = this.state.files[0]
+      // this.state.files && this.state.files.map( (file) => {
         let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`);
-        let uploadTask = storageRef.put(file)
-        uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,() => 
-        {
-          let downloadURL = uploadTask.snapshot.downloadURL;
-        })  
-      });
+        let uploadTask = await storageRef.put(file)
+        // uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,() => 
+        // {
+        //   let downloadURL = uploadTask.snapshot.downloadURL;
+        //   console.log('download url fetched ',downloadURL);
+        // })  
+      // });
     }
 
     imgPush = async () => {
-      this.state.files && this.state.files.map((file) => {
+      // this.state.files && this.state.files.map(async (file) => {
         let storageRef = firebase.storage().ref();
-        let spaceRef = storageRef.child('images/'+file.name)
-        storageRef.child('images/'+file.name).getDownloadURL().then((url) => {
+        let spaceRef = storageRef.child('images/'+this.state.files[0].name)
+        await storageRef.child('images/'+this.state.files[0].name).getDownloadURL().then((url) => {
           this.setState({
             img:[...this.state.img, url]
           })
-        })
+        // })
       })
-      this.setState({
+      await this.setState({
         files: [],
         user: firebase.auth().currentUser.email
       })
       console.log('it should have images',this.state)
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form submit",this.state);
-        this.handleSaveImage().then(()=>setTimeout(() => this.imgPush()
-        .then(() => 
-          setTimeout(() => this.props.createBlog(this.state),10000))
-          ,10000))
-        setTimeout(() => this.props.history.push('/') , 24000) ;
+        await this.handleSaveImage();
+        await this.imgPush();
+        await this.props.createBlog(this.state);
+        await this.props.history.push('/');
+        // this.handleSaveImage().then(()=>setTimeout(() => this.imgPush()
+        // .then(() => 
+        //   setTimeout(() => this.props.createBlog(this.state),10000))
+        //   ,10000))
+        // setTimeout(() => this.props.history.push('/') , 24000) ;
       }
     render() {
         return (
@@ -91,7 +97,7 @@ class CreateBlog extends Component {
                 </FormGroup>
                 <FormGroup className='row row-content'>
                   <Label for="files" className='col-12 col-md-2'>Images</Label>
-                  <input type="file" multiple name="files" id="files" onChange={(e) => {this.handleChangeImage(e.target.files)}} placeholder="Enter your name" className='col-12 col-md-9 offset-sm-1'/>
+                  <input type="file" name="files" id="files" onChange={(e) => {this.handleChangeImage(e.target.files)}} placeholder="Enter your name" className='col-12 col-md-9 offset-sm-1'/>
                 </FormGroup>
                 <Button className='btn btn-secondary' type='submit'>Submit</Button>
               </div>
