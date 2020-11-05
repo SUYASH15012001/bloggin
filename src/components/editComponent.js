@@ -10,28 +10,31 @@ function RenderCard({blogs, handleDelete, toggleModal}) {
     return(
         <div className="row align-items-start">
             {blogs && blogs.map(blog => 
-            {if(blog.user === firebase.auth().currentUser.email){
+            {
+                if(blog.user === firebase.auth().currentUser.email){
                 console.log('blog is', blog )
                 return (
-                    <div className="col-12 col-sm-3 mt-4" key={blog.id}>
-                        <Card>
-                            {blog.img && blog.img.map(blogImg => {
-                                return (
-                                    <CardImg key= {blog.img.indexOf(blogImg)} height='400px' 
-                                    src= {blogImg} alt='Card image'/>
-                                )})
-                            }
-                            <CardBody>
-                                <CardTitle className='mb-2'> {blog.title} </CardTitle>
-                                <Button outline color='danger' onClick={() => {handleDelete(blog.id) }}> <i className='fa fa-times'></i> </Button>
-                                &nbsp;&nbsp;
-                                <Button outline color='info' onClick={() => {toggleModal(blog.id)}}> <i className='fa fa-pencil'></i> </Button>
-                            </CardBody>
-                        </Card>
-                    </div>
-                )
-            } 
-            })}
+                        <div className="col-12 col-sm-3 mt-4" key={blog.id}>
+                            <Card>
+                                {blog.img && blog.img.map(blogImg => {
+                                    return (
+                                        <CardImg key= {blog.img.indexOf(blogImg)} height='400px' 
+                                        src= {blogImg} alt='Card image'/>
+                                    )})
+                                }
+                                <CardBody>
+                                    <CardTitle className='mb-2'> {blog.title} </CardTitle>
+                                    <Button outline color='danger' onClick={() => {handleDelete(blog.id) }}> <i className='fa fa-times'></i> </Button>
+                                    &nbsp;&nbsp;
+                                    <Button outline color='info' onClick={() => {toggleModal(blog.id)}}> <i className='fa fa-pencil'></i> </Button>
+                                </CardBody>
+                            </Card>
+                        </div>
+                    )
+                } 
+            }
+            
+            )}
         </div> 
         );
 }

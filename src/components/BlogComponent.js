@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createBlog } from '../redux/actions/blogActions';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import firebase from '../config/fbConfig'
-
+import { CubeGrid } from 'styled-loaders-react'
 class CreateBlog extends Component {
     state={
         title:'',
@@ -12,10 +12,10 @@ class CreateBlog extends Component {
         authorName: '',
         img: '',
         files:null,
-        user:''
+        user:'',
+        isLoading:false
     };
 
-    //e is the event i.e. is passed to the event handler fucntion.
     handleChange = (e) => { 
         this.setState({
             [e.target.id]:e.target.value
@@ -30,50 +30,48 @@ class CreateBlog extends Component {
 
     handleSaveImage = async () => {
       let bucketName = 'images';
-      let file = this.state.files[0]
-      // this.state.files && this.state.files.map( (file) => {
-        let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`);
-        let uploadTask = await storageRef.put(file)
-        // uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,() => 
-        // {
-        //   let downloadURL = uploadTask.snapshot.downloadURL;
-        //   console.log('download url fetched ',downloadURL);
-        // })  
-      // });
+      let file = this.state.files[0];
+      let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`);
+      await storageRef.put(file)
+     
     }
 
     imgPush = async () => {
-      // this.state.files && this.state.files.map(async (file) => {
-        let storageRef = firebase.storage().ref();
-        let spaceRef = storageRef.child('images/'+this.state.files[0].name)
-        await storageRef.child('images/'+this.state.files[0].name).getDownloadURL().then((url) => {
-          this.setState({
-            img:[...this.state.img, url]
-          })
-        // })
+      let storageRef = firebase.storage().ref();
+      await storageRef.child('images/'+this.state.files[0].name).getDownloadURL().then((url) => {
+        this.setState({
+          img:[...this.state.img, url]
+        })
       })
-      await this.setState({
-        files: [],
+      this.setState({
+        files:null,
         user: firebase.auth().currentUser.email
       })
-      console.log('it should have images',this.state)
     }
 
     handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log("Form submit",this.state);
-        await this.handleSaveImage();
-        await this.imgPush();
-        await this.props.createBlog(this.state);
-        await this.props.history.push('/');
-        // this.handleSaveImage().then(()=>setTimeout(() => this.imgPush()
-        // .then(() => 
-        //   setTimeout(() => this.props.createBlog(this.state),10000))
-        //   ,10000))
-        // setTimeout(() => this.props.history.push('/') , 24000) ;
+      e.preventDefault();
+      console.log("Form submit",this.state);
+      this.setState({
+        isLoading:true
+      })
+      await this.handleSaveImage();
+      await this.imgPush();
+      const blog = { 
+        title:this.state.title,
+        subtitle:this.state.subtitle,
+        content: this.state.content,
+        authorName: this.state.authorName,
+        img: this.state.img,
+        user:this.state.user
       }
+      await this.props.createBlog(blog);
+      await this.props.history.push('/');
+    }
+
     render() {
         return (
+          this.state.isLoading?<CubeGrid/>:
           <div className="container">
             <h3>Create Your Blog&nbsp;&nbsp;<i class="fa fa-comments" aria-hidden="true"></i></h3>
             <hr/><br/>
