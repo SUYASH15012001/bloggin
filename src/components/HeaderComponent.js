@@ -47,29 +47,28 @@ class Header extends Component {
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
                         <NavbarBrand className="mr-auto">
-                           <NavLink className="nav-link ml-auto  text-white ml-5" to="/home">
+                           <NavLink className="nav-link ml-auto  text-white ml-3 ml-lg-4" to="/home">
                                 Blog-e25f9
                            </NavLink>
                         </NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar id="navs">
                                 <NavItem>
-                                    <NavLink className="nav-link ml-5 navlink-style" to="/home" active>
+                                    <NavLink className="nav-link ml-3 ml-lg-4 navlink-style" to="/home" active>
                                         <span className="fa fa-home fa-lg"></span> Home
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link ml-5 navlink-style" to="/myBlog">
+                                    <NavLink className="nav-link ml-3 ml-lg-4 navlink-style" to="/myBlog">
                                         <span className="fa fa-info fa-lg"></span> Blog
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link ml-5 navlink-style" to="/contact">
+                                    <NavLink className="nav-link ml-3 ml-lg-4 navlink-style" to="/contact">
                                         <span className="fa fa-address-card fa-lg"></span> Contact Us
                                     </NavLink>
                                 </NavItem>
-                                <NavItem className="ml-5 navlink-style">
-
+                                <NavItem className="ml-3 ml-lg-4 navlink-style">
                                     {
                                         this.state.isSignedIn ? 
                                         (

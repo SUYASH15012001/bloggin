@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CardImgOverlay,Card, CardImg, Modal,ModalBody,ModalHeader,CardTitle, CardSubtitle , CardFooter} from 'reactstrap';
+import { CardImgOverlay,Card, CardImg, Modal,ModalBody,ModalHeader,CardTitle, CardSubtitle , CardFooter, CardBody} from 'reactstrap';
 
 class RenderCard extends Component {
     
@@ -16,16 +16,28 @@ class RenderCard extends Component {
     render(){
         const blog = this.props.blogs;
         return(
-            <div className="col-12 mt-4" key={blog.id}>
-                <Card onClick={this.toggle}>
-                    <CardImg style={{opacity:'50%',height:'400px'}} src= {blog.img} alt='Card image' />
-                    <CardImgOverlay style={{top:'auto'}}>
-                        <CardTitle> {blog.title} </CardTitle>
-                        <CardSubtitle> {blog.subtitle} </CardSubtitle>
-                        {/* <CardText> {blog.content} </CardText> */}
-                        <CardFooter> {blog.authorName}  </CardFooter>
-                    </CardImgOverlay>
-                </Card>
+            <div className="col-sm-12 col-md-6 col-lg-4 mt-4" key={blog.id}>
+                <div className="c" >
+                    <div className="front" >
+                        <Card onClick={this.toggle} >
+                            <CardImg style={{opacity:'50%',height:'400px'}} src= {blog.img} alt='Card image' />
+                            <CardImgOverlay>
+                                <CardTitle> {blog.title} </CardTitle>
+                                <CardSubtitle> {blog.subtitle} </CardSubtitle>
+                                <CardFooter> {blog.authorName}  </CardFooter>
+                            </CardImgOverlay>
+                        </Card>
+                    </div>
+                    <div className="back">
+                        <Card onClick={this.toggle} >
+                            <CardImg style={{opacity:'50%',height:'400px'}} src= {blog.img} alt='Card image' />
+                            <CardImgOverlay>
+                                <CardBody style={{overflow:"hidden"}}> {blog.content} </CardBody>
+                            </CardImgOverlay>
+                        </Card>                    
+                    </div>
+                </div>
+
                 <Modal isOpen={this.state.modal} toggle={this.toggle} size='lg' >
                     <ModalHeader toggle={this.toggle} className='text-white'>Blog content</ModalHeader>
                     <ModalBody style={{color:'grey'}}>

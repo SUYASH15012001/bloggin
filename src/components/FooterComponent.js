@@ -16,10 +16,10 @@ function Footer(props) {
                     <div className="col-7 col-sm-5 mt-5">
                         <h5>Our Address</h5>
                         <address>
-                        2nd floor 455,<br />
+                        k-272/455,<br />
                         Sector 18 Noida, uttar Pradesh<br />
                         India<br />
-                        <i className="fa fa-phone fa-lg"></i>: +91 99112 02214 <br />
+                        <i className="fa fa-phone fa-lg"></i>: +91 99530 22140 <br />
                         <i className="fa fa-fax fa-lg"></i>: +852 8765 4321<br />
                         <i className="fa fa-envelope fa-lg"></i>: <a href="mailto:sakshams1501@gmail.com">
                             Wanna drop a Mail , click me</a>
@@ -27,7 +27,7 @@ function Footer(props) {
                     </div>
                     <div className="col-12 col-sm-4 align-self-center mt-5">
                         <div className="text-center">
-                            <a className="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i className="fa fa-facebook"></i></a>
+                            <a className="btn btn-social-icon btn-facebook" href="http://www.facebook.com/"><i className="fa fa-facebook"></i></a>
                             <a className="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i className="fa fa-linkedin"></i></a>
                             <a className="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i className="fa fa-twitter"></i></a>
                             <a className="btn btn-social-icon btn-google" href="http://youtube.com/"><i className="fa fa-youtube"></i></a>
