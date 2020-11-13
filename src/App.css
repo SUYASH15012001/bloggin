@@ -117,3 +117,10 @@ a:hover {
 .c:hover > .back{
   transform: perspective(600px) rotateY(0deg);
 }
+
+.firebaseui-idp-list{
+  margin: 0!important;
+}
+.firebaseui-idp-list>.firebaseui-list-item {
+  margin:0!important;
+}

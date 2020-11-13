@@ -68,7 +68,7 @@ class Header extends Component {
                                         <span className="fa fa-address-card fa-lg"></span> Contact Us
                                     </NavLink>
                                 </NavItem>
-                                <NavItem className="ml-3 ml-lg-4 navlink-style">
+                                <NavItem className="ml-3 ml-lg-4 navlink-style" id='loginLink'>
                                     {
                                         this.state.isSignedIn ? 
                                         (
