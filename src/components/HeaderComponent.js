@@ -43,12 +43,12 @@ class Header extends Component {
         
         return(
             <React.Fragment>
-                <Navbar dark expand="md" className="bg-dark">
+                <Navbar dark expand="lg" className="bg-dark">
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
                         <NavbarBrand className="mr-auto">
                            <NavLink className="nav-link ml-auto  text-white ml-5" to="/home">
-                                Hyathi
+                                Blog-e25f9
                            </NavLink>
                         </NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
@@ -68,8 +68,26 @@ class Header extends Component {
                                         <span className="fa fa-address-card fa-lg"></span> Contact Us
                                     </NavLink>
                                 </NavItem>
+                                <NavItem className="ml-5 navlink-style">
+
+                                    {
+                                        this.state.isSignedIn ? 
+                                        (
+                                            <span>
+                                                <NavbarBrand>
+                                                    <img id='profilePic' src={firebase.auth().currentUser.photoURL} alt='uploaded'/>
+                                                </NavbarBrand>
+                                                <text className='text-secondary'>Welcome <strong>{firebase.auth().currentUser.displayName}</strong> </text>&nbsp;&nbsp;&nbsp;
+                                                <Button onClick={() => firebase.auth().signOut()}>SignOut</Button>
+                                            </span>
+                                            ):
+                                        (
+                                            <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
+                                        )
+                                    }                                    
+                                </NavItem>
                             </Nav>
-                            <span id='loginlink'> 
+                            {/* <span id='loginlink'> 
                             {   
                                 this.state.isSignedIn ? 
                                 (
@@ -84,7 +102,7 @@ class Header extends Component {
                                 (
                                     <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
                                 )
-                            }</span>
+                            }</span> */}
                         </Collapse>
                     </div>
                 </Navbar>
@@ -92,8 +110,8 @@ class Header extends Component {
                     <div className="container">
                         <div className="row row-header">
                             <div className="col-12 col-sm-6">
-                                <h1>Ristorante Con Fusion</h1>
-                                <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations will tickle your culinary senses!</p>
+                                <h1>Commençons à bloguer</h1>
+                                <p>We take inspiration from the World's best blogs, and create a unique fusion experience. Our earsmacking creations will tickle your sapiosexual senses!</p>
                             </div>
                         </div>
                     </div>

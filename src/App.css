@@ -71,3 +71,7 @@ a:hover {
     margin-right:10%;
   }
 }
+
+.modal-content{
+  background-color: black;
+}

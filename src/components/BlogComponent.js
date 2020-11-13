@@ -70,6 +70,9 @@ class CreateBlog extends Component {
     }
 
     render() {
+      if(!!!firebase.auth().currentUser){
+        window.location.href = '/'
+      }
         return (
           this.state.isLoading?<CubeGrid/>:
           <div className="container">
@@ -79,23 +82,23 @@ class CreateBlog extends Component {
               <div className="container">
                 <FormGroup className='row row-content'>
                   <Label for="title" className='col-12 col-md-2'>Title</Label>
-                  <Input type="text" name="title" id="title" onChange={this.handleChange}   placeholder="Enter Title" className='col-12 col-md-9 offset-sm-1'/>
+                  <Input type="text" name="title" id="title" onChange={this.handleChange} required placeholder="Enter Title" className='col-12 col-md-9 offset-sm-1'/>
                 </FormGroup>
                 <FormGroup  className='row row-content'>
                   <Label for="subtitle" className='col-12 col-md-2'>Subtitle</Label>
-                  <Input type="text" name="subtitle" id="subtitle" onChange={this.handleChange}  placeholder="Enter Subtitle" className='col-12 col-md-9 offset-sm-1'/>
+                  <Input type="text" name="subtitle" id="subtitle" onChange={this.handleChange} required placeholder="Enter Subtitle" className='col-12 col-md-9 offset-sm-1'/>
                 </FormGroup >
                 <FormGroup className='row row-content'> 
                   <Label for="content" className='col-12 col-md-2'>Description</Label>
-                  <Input type="textarea" name="content" id="content" onChange={this.handleChange}  className='col-12 col-md-9 offset-sm-1'/>
+                  <Input type="textarea" name="content" id="content" onChange={this.handleChange} minLength='50' required className='col-12 col-md-9 offset-sm-1'/>
                 </FormGroup>
                 <FormGroup className='row row-content'>
                   <Label for="authorName" className='col-12 col-md-2'>Author Name</Label>
-                  <Input type="text" name="authorName" id="authorName" onChange={this.handleChange}   placeholder="Enter your name" className='col-12 col-md-9 offset-sm-1'/>
+                  <Input type="text" name="authorName" id="authorName" onChange={this.handleChange} required   placeholder="Enter your name" className='col-12 col-md-9 offset-sm-1'/>
                 </FormGroup>
                 <FormGroup className='row row-content'>
                   <Label for="files" className='col-12 col-md-2'>Images</Label>
-                  <input type="file" name="files" id="files" onChange={(e) => {this.handleChangeImage(e.target.files)}} placeholder="Enter your name" className='col-12 col-md-9 offset-sm-1'/>
+                  <input type="file" name="files" id="files" required onChange={(e) => {this.handleChangeImage(e.target.files)}} placeholder="Enter your name" className='col-12 col-md-9 offset-sm-1'/>
                 </FormGroup>
                 <Button className='btn btn-secondary' type='submit'>Submit</Button>
               </div>
